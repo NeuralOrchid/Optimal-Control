@@ -35,36 +35,47 @@ The controlled chaotic system is defined by
 In this section, we study the optimal control problem of the autonomous chaotic systems about its equilibrium states. For the purpose of optimal control, we will apply the PMP
 
 Consider a dynamic system modeled by the state equations
+
 $$
 \dot x_i(t) = f_i(x_1(t), x_2(t), ..., x_n(t)) \\
 i = 0, 1, .., n
 $$
 
 The controlled chaotic system is defined by
+
 $$
 \dot x_i(t) = f_i(x_1(t), x_2(t), ..., x_n(t)) + u_i(t)
 $$
+
 Where $u_i(t), i=0,1,...,n$ are control inputs which will be satisfied from the conditions of the optimal dynamical system about its equilibrium points with respect to the cost function $J$. The proposed control strategy is designed to achieve in a given time $t_f$ to the equilibrium point with an optimal control inputs. The initial and final conditions are
+
 $$
 x_i(0)=x_{i,0}, x_i(t_f)= \bar x_i
 $$
+
 where $\bar x_i$, denote the coordinates of the equilibrium points. The objective functional to be minimized is defined as
+
 $$
-J = \frac{1}{2} \int^{t_f}_{0}{\sum^{n}_{i=1}{(\alpha_i(x_i-\bar x_i)^2 + \beta_i u_i^2)}dt}
+J = \frac{1}{2} \int^{t_f}\_{0}{ \sum^{n}_{i=1}{(\alpha_i(x_i-\bar x_i)^2 + \beta_i {u_i}^2)}dt }
 $$
+
 where $\alpha_i, \beta_i, (i=0,1,...,n)$ are positive constants.
 $\alpha_1=10,\alpha_2=10,\alpha_3=10,\beta_1=2,\beta_2=5,\beta_3=10$.
 
 The corresponding Hamiltonian function will be
+
 $$
 H = \frac{1}{2} \sum^{n}_{i=1}{(\alpha_i(x_i-\bar x_i)^2 + \beta_i u_i^2)}dt + \lambda_i(f_i + u_i)
 $$
+
 where $\lambda_i, i=0,1,...,n$ are co-state variables. Using this notation, the optimality conditions can be written as follows:
+
 $$ \begin{cases}
 \dot x = \frac{\partial H}{\partial \lambda_i} \\
 \dot \lambda_i = - \frac{\partial H}{\partial x_i} \\
 \frac{\partial H}{\partial u_i} = 0 \\
 \end{cases} $$
+
 The optimality conditions are mathematically formulated into a loss function. This allows the neural network to learn both the stabilization of the chaotic system and its optimal control, guided by the principles of optimality.
 
 To facilitate efficient learning and computation, we employ a variable transformation that maps the original, unbounded time domain (ranging from 0 to infinity) onto a bounded interval [0, 1). This transformation allows the neural network to be trained over a finite horizon, significantly reducing the computational complexity and enabling practical implementation of the control strategy. By working within a bounded domain, we can effectively approximate the solution to the infinite-horizon optimal control problem.
